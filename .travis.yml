@@ -12,8 +12,10 @@ script:
 notifications:
   email:
     recipients:
-      - freifunk@hsmr.cc
-    on_success: never
+      - post@0x21.biz
+      - oleander@oleander.cc
+      - manu@dreivirteileins.de
+    on_success: change
     on_failure: change
   irc:
     channels:
