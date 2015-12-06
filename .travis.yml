@@ -10,6 +10,11 @@ script:
  - for f in *; do echo "checking $f..."; fastd --verify-config --config-peer $f || exit 1; done
 
 notifications:
+  email:
+    recipients:
+      - freifunk@hsmr.cc
+    on_success: never
+    on_failure: change
   irc:
     channels:
       - "irc.hackint.org#hsmr"
@@ -17,3 +22,9 @@ notifications:
     on_failure: always
     use_notice: true
     skip_join: false
+  webhooks:
+    urls:
+      - http://api.marburg.freifunk.net/yolokey/deploy
+    on_success: always
+    on_failure: never
+    on_start: never
