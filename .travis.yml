@@ -10,6 +10,10 @@ before_install:
 script:
  - for f in *; do echo "checking $f..."; fastd --verify-config --config-peer $f || exit 1; done
 
+branches:
+  except:
+    - deploy
+
 notifications:
   email:
     recipients:
