@@ -1,12 +1,11 @@
 language: generic
 sudo: required
-dist: trusty
-
-before_install:
- - echo "deb http://repo.universe-factory.net/debian/ sid main" | sudo tee -a /etc/apt/sources.list
- - sudo apt-get update -qq
- - sudo apt-get install --force-yes fastd
-
+dist: xenial
+ 
+addons:
+  apt:
+    packages:
+      - fastd
 script:
  - for f in *; do echo "checking $f..."; fastd --verify-config --config-peer $f || exit 1; done
 
