@@ -28,4 +28,4 @@ jobs:
 
     - name: Deploy changes
       run: |
-        curl -H "Secret: ${{ secrets.DEPLOYMENT_SECRET }}" https://api.marburg.freifunk.net/yolokey/deploy
+        curl -f -H "Secret: ${{ secrets.DEPLOYMENT_SECRET }}" https://api.marburg.freifunk.net/yolokey/deploy
