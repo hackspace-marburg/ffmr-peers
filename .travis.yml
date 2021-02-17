@@ -12,6 +12,7 @@ script:
 branches:
   except:
     - deploy
+    - github-action
 
 notifications:
   email:

@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  fastd-verify-deploy:
+    name: Verify master branch and deploy changes
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Install fastd
+      run: sudo apt-get install fastd
+
+    - name: Verify fastd
+      run: |
+        for f in *; do
+          echo "checking $f..."
+          fastd --verify-config --config-peer "$f" || exit 1
+        done
+      shell: bash
+
+    - name: Deploy changes
+      run: |
+        curl -H "Secret: ${{ secret.DEPLOYMENT_SECRET }}" https://api.marburg.freifunk.net/yolokey/deploy
